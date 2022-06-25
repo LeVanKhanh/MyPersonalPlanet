@@ -1,63 +1,42 @@
-﻿namespace Mpp.Architecture.Core.Test.Domain
+﻿namespace Mpp.Architecture.Core.Test.Domain;
+
+using FluentValidation;
+using MediatR;
+using Mpp.Architecture.Core.Domain.DomainBusinessHanlder;
+using Mpp.Architecture.Core.Domain.Services;
+
+public class CreateOrderHandler
 {
-    using FluentValidation;
-    using MediatR;
-    using Mpp.Architecture.Core.Domain.Common;
-    using Mpp.Architecture.Core.Domain.DomainBusinessHanlder;
-    using Mpp.Architecture.Core.Domain.Services;
-
-    public class CreateOrderHandler
+    public class Request : IRequest<IDomainResult<Order>>
     {
-        public class Request : IRequest<IDomainResult<Order>>
+        public DateTime OrderDate { get; set; }
+    }
+
+    public class RequestValidator : AbstractValidator<Request>
+    {
+        public RequestValidator()
         {
-            public DateTime OrderDate { get; set; }
+            RuleFor(r => r.OrderDate).GreaterThanOrEqualTo(DateTime.Today);
         }
+    }
 
-        public class RequestValidator : AbstractValidator<Request>
+    public class OrderCreationMapper : IDomainMapper<Request, Order>
+    {
+        public Order Map(Request source, Order destination)
         {
-            public RequestValidator()
-            {
-                RuleFor(r => r.OrderDate).GreaterThanOrEqualTo(DateTime.Today);
-            }
+            destination.OrderDate = source.OrderDate;
+            return destination;
         }
+    }
 
-        public class Response : DomainResult<Order>
+    public class Handler : CreateHandlerCore<Request, Order>
+    {
+        public Handler(IOrderRepository orderRepository,
+            IDomainValidationService domainValidationService,
+            IDomainMapper domainMapper)
+            : base(domainMapper, orderRepository, domainValidationService)
         {
-            public Response(Order? result)
-                : base(result)
-            {
-            }
 
-            public Response(List<DomainProblem> domainProblems)
-                : base(domainProblems)
-            {
-            }
-        }
-
-        public class OrderCreationMapper : DomainMapper<Request, Order>
-        {
-            public override Order Map(Request source)
-            {
-                var order = new Order();
-                return Map(source, order);
-            }
-
-            public override Order Map(Request source, Order destination)
-            {
-                destination.OrderDate = source.OrderDate;
-                return destination;
-            }
-        }
-
-        public class Handler : CreateHandlerCore<Request, Order>
-        {
-            public Handler(IOrderRepository orderRepository,
-                IDomainValidationService domainValidationService,
-                IDomainMapper domainMapper)
-                : base(domainMapper, orderRepository, domainValidationService)
-            {
-
-            }
         }
     }
 }

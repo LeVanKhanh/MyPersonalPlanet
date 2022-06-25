@@ -7,7 +7,7 @@ using Mpp.Architecture.Core.Domain.Persistence;
 using Mpp.Architecture.Core.Domain.Services;
 
 public abstract class CreateHandlerCore<TRequest, TEntity> : IRequestHandler<TRequest, IDomainResult<TEntity>>
-        where TEntity : Entity
+        where TEntity : Entity, new()
         where TRequest : IRequest<IDomainResult<TEntity>>
 {
     protected readonly IDomainMapper Mapper;

@@ -22,7 +22,6 @@
                     var serviceType = assignedTypes.GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(IDomainMapper<,>));
                     services.AddScoped(serviceType, assignedTypes);
                 });
-            services.AddScoped(typeof(IDomainMapper), typeof(DomainMapper));
         }
     }
 }
