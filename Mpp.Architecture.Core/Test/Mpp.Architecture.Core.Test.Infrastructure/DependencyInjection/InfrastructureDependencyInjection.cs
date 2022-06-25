@@ -1,8 +1,9 @@
 ﻿namespace Mpp.Architecture.Core.Test.Infrastructure.DependencyInjection
 {
     using Microsoft.Extensions.DependencyInjection;
-    using Mpp.Architecture.Core.Test.Domain.DependencyInjection;
+    using Mpp.Architecture.Core.Domain.Persistence;
     using Mpp.Architecture.Core.Test.Domain;
+    using Mpp.Architecture.Core.Test.Domain.DependencyInjection;
     using Mpp.Architecture.Core.Test.Infrastructure.Persistance;
 
     public static class InfrastructureDependencyInjection
@@ -11,6 +12,7 @@
         {
             services.AddTestDomain();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IUnitOfWork, TestDbContext>();
         }
     }
 }

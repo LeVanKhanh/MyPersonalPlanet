@@ -18,13 +18,13 @@ public abstract class DeleteHandlerCore<TRequest, TEntity> : IRequestHandler<TRe
 
     public async Task<IDomainResult<TEntity>> Handle(TRequest request, CancellationToken cancellationToken)
     {
-        var updatingEntity = await GetEntity(request, cancellationToken);
-        if (updatingEntity == null)
+        var deletingEntity = await GetEntity(request, cancellationToken);
+        if (deletingEntity == null)
         {
             throw new DomainException(DomainProblemContainer.BadEntity, typeof(TEntity).Name);
         }
-        Repository.Remove(updatingEntity);
-        return new DomainResult<TEntity>(updatingEntity);
+        Repository.Remove(deletingEntity);
+        return new DomainResult<TEntity>(deletingEntity);
     }
 
     protected abstract Task<TEntity?> GetEntity(TRequest request, CancellationToken cancellationToken);

@@ -6,10 +6,12 @@ public class DomainResult<T> : IDomainResult<T>
     public DomainResult(T? result)
     {
         Result = result;
+        Success = true;
     }
 
     public DomainResult(List<DomainProblem> domainProblems)
     {
+        Success = false;
         DomainProblems = domainProblems;
     }
 

@@ -4,11 +4,14 @@ using FluentValidation;
 using MediatR;
 using Mpp.Architecture.Core.Domain.DomainBusinessHanlder;
 using Mpp.Architecture.Core.Domain.Services;
+using System.Threading;
+using System.Threading.Tasks;
 
-public sealed class CreateOrderHandler
+public sealed class UpdateOrderHandler
 {
     public class Request : IRequest<IDomainResult<Order>>
     {
+        public int OrderId { get; set; }
         public DateTime OrderDate { get; set; }
     }
 
@@ -16,6 +19,7 @@ public sealed class CreateOrderHandler
     {
         public RequestValidator()
         {
+            RuleFor(x => x.OrderId).GreaterThan(0);
             RuleFor(r => r.OrderDate).GreaterThanOrEqualTo(DateTime.Today);
         }
     }
@@ -29,7 +33,7 @@ public sealed class CreateOrderHandler
         }
     }
 
-    public class Handler : CreateHandlerCore<Request, Order>
+    public class Handler : UpdateHandlerCore<Request, Order>
     {
         public Handler(IOrderRepository orderRepository,
             IDomainValidationService domainValidationService,
@@ -37,6 +41,12 @@ public sealed class CreateOrderHandler
             : base(domainMapper, orderRepository, domainValidationService)
         {
 
+        }
+
+        protected override async Task<Order?> GetEntity(Request request, CancellationToken cancellationToken)
+        {
+            var order = Repository.Find(request.OrderId);
+            return await Task.FromResult(order);
         }
     }
 }

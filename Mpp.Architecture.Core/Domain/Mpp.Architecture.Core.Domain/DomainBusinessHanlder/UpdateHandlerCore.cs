@@ -26,13 +26,18 @@ public abstract class UpdateHandlerCore<TRequest, TEntity> : IRequestHandler<TRe
     public async Task<IDomainResult<TEntity>> Handle(TRequest request, CancellationToken cancellationToken)
     {
         var updatingEntity = await GetEntity(request, cancellationToken);
+        if (updatingEntity == null)
+        {
+            throw new DomainException(DomainProblemContainer.EntityNotFound, typeof(TEntity).Name);
+        }
+
         updatingEntity = await UpdateEntity(request, updatingEntity, cancellationToken);
         Validate(updatingEntity);
         Repository.Update(updatingEntity);
         return new DomainResult<TEntity>(updatingEntity);
     }
 
-    protected abstract Task<TEntity> GetEntity(TRequest request, CancellationToken cancellationToken);
+    protected abstract Task<TEntity?> GetEntity(TRequest request, CancellationToken cancellationToken);
 
     protected virtual async Task<TEntity> UpdateEntity(TRequest request, TEntity updatingEntity, CancellationToken cancellationToken)
     {
