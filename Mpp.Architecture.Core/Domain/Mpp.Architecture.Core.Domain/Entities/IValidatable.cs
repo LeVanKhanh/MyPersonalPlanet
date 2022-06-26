@@ -1,7 +1,6 @@
-﻿namespace Mpp.Architecture.Core.Domain.Entities
+﻿namespace Mpp.Architecture.Core.Domain.Entities;
+
+public interface IValidatable
 {
-    public interface IValidatable
-    {
-        bool IsValid { get; }
-    }
+    bool IsValid { get; }
 }

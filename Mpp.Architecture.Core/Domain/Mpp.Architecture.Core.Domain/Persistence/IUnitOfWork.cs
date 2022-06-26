@@ -1,7 +1,6 @@
-﻿namespace Mpp.Architecture.Core.Domain.Persistence
+﻿namespace Mpp.Architecture.Core.Domain.Persistence;
+
+public interface IUnitOfWork
 {
-    public interface IUnitOfWork
-    {
-        Task<int> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken));
-    }
+    Task<int> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken));
 }

@@ -1,7 +1,6 @@
-﻿namespace Mpp.Architecture.Core.Domain.Entities
+﻿namespace Mpp.Architecture.Core.Domain.Entities;
+
+public interface IDeactive
 {
-    public interface IDeactive
-    {
-        bool IsDeactive { get; }
-    }
+    bool IsDeactive { get; }
 }

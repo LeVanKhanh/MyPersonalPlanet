@@ -1,7 +1,6 @@
-﻿namespace Mpp.Architecture.Core.Application.RequestHandler
-{
-    public class QueryItemHandler
-    {
+﻿namespace Mpp.Architecture.Core.Application.RequestHandler;
 
-    }
+public class QueryItemHandler
+{
+
 }

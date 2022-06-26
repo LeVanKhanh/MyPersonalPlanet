@@ -1,40 +1,39 @@
-﻿namespace Mpp.Architecture.Core.Domain.Common
+﻿namespace Mpp.Architecture.Core.Domain.Common;
+
+using System.Runtime.Serialization;
+
+[Serializable]
+public class DomainException : Exception
 {
-    using System.Runtime.Serialization;
+    public int ErrorCode { get; set; }
 
-    [Serializable]
-    public class DomainException : Exception
+    public DomainException(DomainProblem domainProblem)
+        : this(domainProblem.Message, domainProblem.ProblemId)
     {
-        public int ErrorCode { get; set; }
 
-        public DomainException(DomainProblem domainProblem)
-            : this(domainProblem.Message, domainProblem.ProblemId)
-        {
+    }
 
-        }
+    public DomainException(DomainProblem domainProblem, params object?[] pars)
+        : this(string.Format(domainProblem.Message, pars), domainProblem.ProblemId)
+    {
 
-        public DomainException(DomainProblem domainProblem, params object?[] pars)
-            : this(string.Format(domainProblem.Message, pars), domainProblem.ProblemId)
-        {
+    }
 
-        }
+    public DomainException(string message, int errorCode)
+        : base(message)
+    {
+        ErrorCode = errorCode;
+    }
 
-        public DomainException(string message, int errorCode)
-            : base(message)
-        {
-            ErrorCode = errorCode;
-        }
+    public DomainException(string message, int errorCode, Exception? innerException)
+    : base(message, innerException)
+    {
+        ErrorCode = errorCode;
+    }
 
-        public DomainException(string message, int errorCode, Exception? innerException)
-        : base(message, innerException)
-        {
-            ErrorCode = errorCode;
-        }
+    protected DomainException(SerializationInfo serializationInfo, StreamingContext streamingContext)
+        : base(serializationInfo, streamingContext)
+    {
 
-        protected DomainException(SerializationInfo serializationInfo, StreamingContext streamingContext)
-            : base(serializationInfo, streamingContext)
-        {
-
-        }
     }
 }

@@ -1,6 +1,5 @@
-﻿namespace Mpp.Architecture.Core.Infrastructure.ApiIntegration
+﻿namespace Mpp.Architecture.Core.Infrastructure.ApiIntegration;
+
+public class ApiResponse: IApiResponse
 {
-    public class ApiResponse: IApiResponse
-    {
-    }
 }

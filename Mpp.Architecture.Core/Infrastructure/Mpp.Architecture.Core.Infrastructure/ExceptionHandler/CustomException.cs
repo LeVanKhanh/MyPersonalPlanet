@@ -1,7 +1,6 @@
-﻿namespace Mpp.Architecture.Core.Infrastructure.ExceptionHandler
-{
-    public class CustomException : Exception
-    {
+﻿namespace Mpp.Architecture.Core.Infrastructure.ExceptionHandler;
 
-    }
+public class CustomException : Exception
+{
+
 }

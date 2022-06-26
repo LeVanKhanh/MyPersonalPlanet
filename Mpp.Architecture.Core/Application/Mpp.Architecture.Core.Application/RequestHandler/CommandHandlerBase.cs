@@ -1,6 +1,5 @@
-﻿namespace Mpp.Architecture.Core.Application.RequestHandler
+﻿namespace Mpp.Architecture.Core.Application.RequestHandler;
+
+public abstract class CommandHandlerBase: RequestHandlerBase
 {
-    public abstract class CommandHandlerBase: RequestHandlerBase
-    {
-    }
 }
