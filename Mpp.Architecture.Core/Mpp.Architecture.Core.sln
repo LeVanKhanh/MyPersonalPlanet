@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mpp.Architecture.Core.Test.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mpp.Architecture.Core.Test.UnitTests", "Test\Mpp.Architecture.Core.Test.UnitTests\Mpp.Architecture.Core.Test.UnitTests.csproj", "{3D04F6D5-14ED-46B1-A1A5-D51CBE02D5B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mpp.Architecture.Core.Infrastructure.MessageBroker", "Infrastructure\Mpp.Architecture.Core.Infrastructure.MessageBroker\Mpp.Architecture.Core.Infrastructure.MessageBroker.csproj", "{10DFCDE5-9E23-4F94-9885-9295F67F4918}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{3D04F6D5-14ED-46B1-A1A5-D51CBE02D5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D04F6D5-14ED-46B1-A1A5-D51CBE02D5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D04F6D5-14ED-46B1-A1A5-D51CBE02D5B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10DFCDE5-9E23-4F94-9885-9295F67F4918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10DFCDE5-9E23-4F94-9885-9295F67F4918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10DFCDE5-9E23-4F94-9885-9295F67F4918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10DFCDE5-9E23-4F94-9885-9295F67F4918}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{4EE0575A-521C-4A1F-A22B-7B0B9B6018C9} = {257681C0-DA44-4607-98F5-478201A12AE3}
 		{22F2B885-B2FA-4106-BD17-109106DF1529} = {257681C0-DA44-4607-98F5-478201A12AE3}
 		{3D04F6D5-14ED-46B1-A1A5-D51CBE02D5B4} = {257681C0-DA44-4607-98F5-478201A12AE3}
+		{10DFCDE5-9E23-4F94-9885-9295F67F4918} = {826086DD-BFB1-4DA5-85BA-03759CFC69EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED4FB6AA-F54F-4AAC-BA44-12DB661E9228}
